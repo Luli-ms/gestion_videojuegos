@@ -2,7 +2,6 @@ package com.utad.gestion_videojuegos.controller;
 
 import com.utad.gestion_videojuegos.model.Juego;
 import com.utad.gestion_videojuegos.service.JuegoService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,10 +34,10 @@ class JuegoController {
     @DeleteMapping
     public ResponseEntity<Juego> eliminarJuego(@RequestParam("idJuego") Long id) {
         Optional<Juego> found = juegoService.findById(id);
-        return found.map(juego ->
-                ResponseEntity.status(HttpStatus.ACCEPTED).body(juego))
-                .orElseGet(() ->
-                        ResponseEntity.notFound().build()
-        );
+        if (found.isPresent()) {
+            juegoService.eliminarJuego(id);
+            return ResponseEntity.ok(found.get());
+        }
+        return ResponseEntity.notFound().build();
     }
 }

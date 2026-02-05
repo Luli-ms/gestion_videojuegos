@@ -20,8 +20,8 @@ public class Juego {
     @Column(nullable = false)
     private Integer anio;
     @Column(nullable = false)
-
     private String desarrollador;
+
     private String editor = "";
     private Boolean esEdicionEspecial = false;
     private String estado = "";
