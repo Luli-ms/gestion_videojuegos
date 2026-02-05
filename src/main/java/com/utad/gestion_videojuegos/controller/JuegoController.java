@@ -21,7 +21,7 @@ class JuegoController {
     }
 
     /* Actualizar juegos */
-    @PutMapping
+    @PatchMapping
     public ResponseEntity<Juego> actualizarJuego(
             @RequestParam("idJuego") Long id,
             @RequestBody Juego juego
